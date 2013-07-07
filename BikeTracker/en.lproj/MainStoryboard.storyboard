@@ -4,6 +4,59 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--Login View Controller - Login-->
+        <scene sceneID="YCW-Hl-T2v">
+            <objects>
+                <viewController id="mjU-vE-N1z" customClass="MSDLoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tNv-6W-SP2">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEC-cJ-h0x">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Facebook">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginWithFacebook:" destination="mjU-vE-N1z" eventType="touchUpInside" id="Hxb-ey-d0q"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msj-B2-9Ht">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ch-AD-VHE" customClass="FBProfilePictureView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YEC-cJ-h0x" firstAttribute="top" secondItem="tNv-6W-SP2" secondAttribute="top" constant="123" id="35h-xX-nJ6"/>
+                            <constraint firstItem="msj-B2-9Ht" firstAttribute="leading" secondItem="tNv-6W-SP2" secondAttribute="leading" constant="149" id="Twb-ll-Ybt"/>
+                            <constraint firstAttribute="trailing" secondItem="4ch-AD-VHE" secondAttribute="trailing" constant="217" id="XOj-FY-kQc"/>
+                            <constraint firstItem="YEC-cJ-h0x" firstAttribute="centerX" secondItem="tNv-6W-SP2" secondAttribute="centerX" type="default" id="Zwn-FD-GoF"/>
+                            <constraint firstItem="4ch-AD-VHE" firstAttribute="top" secondItem="tNv-6W-SP2" secondAttribute="top" constant="14" id="emn-1z-LaF"/>
+                            <constraint firstItem="msj-B2-9Ht" firstAttribute="top" secondItem="tNv-6W-SP2" secondAttribute="top" constant="41" id="gW3-Iu-veE"/>
+                            <constraint firstItem="4ch-AD-VHE" firstAttribute="leading" secondItem="tNv-6W-SP2" secondAttribute="leading" constant="28" id="laS-Qv-1LM"/>
+                            <constraint firstItem="msj-B2-9Ht" firstAttribute="centerY" secondItem="4ch-AD-VHE" secondAttribute="centerY" type="default" id="zvV-ql-a67"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Login" id="BVW-6u-sbF"/>
+                    <connections>
+                        <outlet property="name" destination="msj-B2-9Ht" id="Bzr-Rf-vGp"/>
+                        <outlet property="profilePic" destination="4ch-AD-VHE" id="Ipw-ch-03S"/>
+                        <segue destination="2" kind="push" identifier="track" id="BTn-4p-jG6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MUW-hQ-olO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="720" y="48"/>
+        </scene>
         <!--View Controller - Track my Ride-->
         <scene sceneID="5">
             <objects>
@@ -32,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="664" y="55"/>
+            <point key="canvasLocation" x="1256" y="43"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WyM-SM-VcU">
@@ -45,7 +98,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="ogl-e3-7Yg"/>
+                        <segue destination="mjU-vE-N1z" kind="relationship" relationship="rootViewController" id="ezi-nw-47h"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOF-uX-PTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -54,9 +107,22 @@
         </scene>
     </scenes>
     <classes>
+        <class className="FBProfilePictureView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBProfilePictureView.h"/>
+        </class>
+        <class className="MSDLoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MSDLoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginWithFacebook:"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profilePic" candidateClass="FBProfilePictureView"/>
+            </relationships>
+        </class>
         <class className="MSDViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MSDViewController.h"/>
             <relationships>
+                <relationship kind="action" name="start:"/>
+                <relationship kind="action" name="stop:"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="startStopButton" candidateClass="UIBarButtonItem"/>
             </relationships>

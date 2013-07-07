@@ -95,7 +95,7 @@
     self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
     [self.routeLineView setFillColor:[UIColor colorWithRed:167/255.0f green:210/255.0f blue:244/255.0f alpha:1.0]];
     [self.routeLineView setStrokeColor:[UIColor colorWithRed:106/255.0f green:151/255.0f blue:232/255.0f alpha:1.0]];
-    [self.routeLineView setLineWidth:15.0];
+    [self.routeLineView setLineWidth:5.0];
     [self.routeLineView setLineCap:kCGLineCapRound];
     overlayView = self.routeLineView;
     return overlayView;
