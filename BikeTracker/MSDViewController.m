@@ -9,6 +9,7 @@
 #import "MSDViewController.h"
 #import <MapKit/MapKit.h>
 #import "MSDRoutePoint.h"
+#import "MSDRideCollectViewController.h"
 #import <ApigeeiOSSDK/ApigeeDataClient.h>
 
 #define METERS_PER_MILE 1609.344
@@ -49,31 +50,10 @@
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone];
     [self.startStopButton setTitle:@"Start"];
     [self.startStopButton setAction:@selector(start:)];
-    
-    NSDictionary *entity = [[NSDictionary alloc] initWithObjectsAndKeys:@"trips", @"type", self.route, @"route", nil];
-    ApigeeDataClient *client = [[ApigeeDataClient alloc] initWithOrganizationId:@"mdobson" withApplicationID:@"biketrackerdev"];
-    ApigeeClientResponse *response = [client createEntity:entity];
-    NSLog(@"response:%@", response);
-    if (response.transactionState == kApigeeClientResponseSuccess) {
-        NSLog(@"Yay");
-    } else {
-        NSLog(@"error:%@", response.error);
-    }
-    
+    [self performSegueWithIdentifier:@"confirm" sender:self];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-//    CLLocation *coord = [locations lastObject];
-//    CLLocationCoordinate2D routeCoord = CLLocationCoordinate2DMake(coord.coordinate.latitude, coord.coordinate.longitude);
-//    MSDRoutePoint *point = nil;
-//    if ([self.route count] < 1) {
-//        point = [[MSDRoutePoint alloc] initWithName:@"Start" andCoordinate:routeCoord];
-//    } else {
-//        point = [[MSDRoutePoint alloc] initWithName:[NSString stringWithFormat:@"Step:%lu", (unsigned long)self.route.count] andCoordinate:routeCoord];
-//    }
-//    [self.route addObject:[point dictionary]];
-//    [self.mapView addAnnotation:point];
-    
     CLLocation *endLocation = [locations lastObject];
     CLLocation *startLocation = nil;
     CLLocationCoordinate2D routeCoord = CLLocationCoordinate2DMake(endLocation.coordinate.latitude, endLocation.coordinate.longitude);
@@ -116,6 +96,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"confirm"]) {
+        NSLog(@"%@",self.route);
+        MSDRideCollectViewController *rideViewController = [segue destinationViewController];
+        rideViewController.route = self.route;
+    }
 }
 
 @end

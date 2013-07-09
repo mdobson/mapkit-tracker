@@ -10,6 +10,8 @@
 
 @interface MSDRideCollectViewController : UIViewController
 
-@property (nonatomic,assign) NSArray *route;
+@property (nonatomic,retain) NSArray *route;
+
+-(IBAction)confirm:(id)sender;
 
 @end
