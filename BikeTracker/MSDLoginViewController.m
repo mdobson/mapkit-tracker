@@ -9,20 +9,56 @@
 #import "MSDLoginViewController.h"
 #import "MSDAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "MSDSharedApigeeClient.h"
 
 @implementation MSDLoginViewController
 
 -(void)viewDidLoad{
-    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection,
-                                                           id<FBGraphUser> user,
-                                                           NSError *error){
-        if (!error) {
-            [self performSegueWithIdentifier:@"track" sender:self];
-        }
-    }];
+
+// Arbitrary facebook code.
+//    if (FBSession.activeSession.isOpen) {
+//        [self performSegueWithIdentifier:@"track" sender:self];
+//    }
+//    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection,
+//                                                           id<FBGraphUser> user,
+//                                                           NSError *error){
+//        if (!error) {
+//            [self performSegueWithIdentifier:@"track" sender:self];
+//        }
+//    }];
 }
 
+-(IBAction)login:(id)sender {
+    NSString *username = self.username.text;
+    NSString *email = self.email.text;
+    NSString *password = self.password.text;
+    
+    ApigeeDataClient *client = [MSDSharedApigeeClient sharedClient];
+    ApigeeClientResponse * response = [client logInUser:username password:password];
+    if (response.transactionState == kApigeeClientResponseSuccess) {
+        [self performSegueWithIdentifier:@"track" sender:self];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error logging you in. Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+    
+}
 
+-(IBAction)signup:(id)sender {
+    NSString *username = self.username.text;
+    NSString *email = self.email.text;
+    NSString *password = self.password.text;
+    
+    ApigeeDataClient *client = [MSDSharedApigeeClient sharedClient];
+    ApigeeClientResponse * response = [client addUser:username email:email name:@"nil" password:password];
+    if (response.transactionState == kApigeeClientResponseSuccess) {
+        [self performSegueWithIdentifier:@"track" sender:self];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error signing you up. Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+    
+}
 
 -(IBAction)loginWithFacebook:(id)sender
 {

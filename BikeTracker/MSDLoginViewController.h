@@ -14,6 +14,12 @@
 @property (nonatomic, strong) IBOutlet FBProfilePictureView *profilePic;
 @property (nonatomic, strong) IBOutlet UILabel *name;
 
+@property (nonatomic, strong) IBOutlet UITextField *email;
+@property (nonatomic, strong) IBOutlet UITextField *username;
+@property (nonatomic, strong) IBOutlet UITextField *password;
+
 -(IBAction)loginWithFacebook:(id)sender;
+-(IBAction)login:(id)sender;
+-(IBAction)signup:(id)sender;
 
 @end

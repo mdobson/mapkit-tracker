@@ -9,6 +9,7 @@
 #import "MSDViewController.h"
 #import <MapKit/MapKit.h>
 #import "MSDRoutePoint.h"
+#import <ApigeeiOSSDK/ApigeeDataClient.h>
 
 #define METERS_PER_MILE 1609.344
 
@@ -18,18 +19,12 @@
 
 @implementation MSDViewController
 
--(void)viewWillAppear:(BOOL)animated {
-//    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(42.33, -83.04);
-//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coord, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
-//    [self.mapView setRegion:viewRegion];
-    //MSDRoutePoint *point = [[MSDRoutePoint alloc] initWithName:@"The D" andCoordinate:coord];
-    //[self.mapView addAnnotation:point];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.route = [[NSMutableArray alloc] init];
     self.mapView.delegate = self;
+    self.mapView.userTrackingMode = YES;
     self.manager = [[CLLocationManager alloc] init];
     self.manager.delegate = self;
     self.manager.distanceFilter = kCLDistanceFilterNone;
@@ -54,6 +49,17 @@
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone];
     [self.startStopButton setTitle:@"Start"];
     [self.startStopButton setAction:@selector(start:)];
+    
+    NSDictionary *entity = [[NSDictionary alloc] initWithObjectsAndKeys:@"trips", @"type", self.route, @"route", nil];
+    ApigeeDataClient *client = [[ApigeeDataClient alloc] initWithOrganizationId:@"mdobson" withApplicationID:@"biketrackerdev"];
+    ApigeeClientResponse *response = [client createEntity:entity];
+    NSLog(@"response:%@", response);
+    if (response.transactionState == kApigeeClientResponseSuccess) {
+        NSLog(@"Yay");
+    } else {
+        NSLog(@"error:%@", response.error);
+    }
+    
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -70,6 +76,9 @@
     
     CLLocation *endLocation = [locations lastObject];
     CLLocation *startLocation = nil;
+    CLLocationCoordinate2D routeCoord = CLLocationCoordinate2DMake(endLocation.coordinate.latitude, endLocation.coordinate.longitude);
+    MSDRoutePoint *point = [[MSDRoutePoint alloc] initWithName:[NSString stringWithFormat:@"Step:%lu", (unsigned long)self.route.count] andCoordinate:routeCoord];;
+    [self.route addObject:[point dictionary]];
     if (self.previousPoint) {
         startLocation = self.previousPoint;
         MKMapPoint *pointsArray = malloc(sizeof(CLLocationCoordinate2D)*2);
@@ -85,6 +94,8 @@
     self.previousPoint = endLocation;
 
     [self.mapView addOverlay:self.routeLine];
+    
+    //NSLog(@"Route:%@", self.route);
     
     
 }
