@@ -87,8 +87,10 @@
     NSLog(@"start");
     //[self.manager startUpdatingLocation];
     MSDAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    delegate.route = [[NSMutableArray alloc] init];
     [delegate.manager startUpdatingLocation];
     [self.startStopButton setTitle:@"Stop" forState:UIControlStateNormal];
+    [self.startStopButton removeTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
     [self.startStopButton addTarget:self action:@selector(stop:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -98,6 +100,7 @@
     MSDAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     [delegate.manager stopUpdatingLocation];
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
+    [self.startStopButton removeTarget:self action:@selector(stop:) forControlEvents:UIControlEventTouchUpInside];
     [self.startStopButton addTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
     [self performSegueWithIdentifier:@"confirm" sender:self];
 }

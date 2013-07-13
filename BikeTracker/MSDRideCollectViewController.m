@@ -30,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"!(self isKindOfClass: %@)", [MKUserLocation class]]];
+    [self.mapView removeAnnotations:annotations];
     self.mapView.delegate = self;
     self.mapView.userTrackingMode = YES;
     MSDAppDelegate *delegate = [[UIApplication sharedApplication] delegate];

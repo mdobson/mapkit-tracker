@@ -22,7 +22,7 @@
     self.manager.delegate = self;
     self.manager.distanceFilter = kCLDistanceFilterNone;
     self.manager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.route = [[NSMutableArray alloc] init];
+    
     
     [FBProfilePictureView class];
     // Override point for customization after application launch.
