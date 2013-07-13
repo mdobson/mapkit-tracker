@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface MSDRideCollectViewController : UIViewController
+@interface MSDRideCollectViewController : UIViewController<MKMapViewDelegate>
 
 @property (nonatomic,retain) NSArray *route;
+
+@property (nonatomic,retain) IBOutlet MKMapView *mapView;
+@property (nonatomic,retain) MKPolyline *routeLine;
+@property (nonatomic,retain) MKPolylineView *routeLineView;
 
 -(IBAction)confirm:(id)sender;
 

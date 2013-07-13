@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) NSMutableArray *route;
 @property (nonatomic, retain) CLLocationManager *manager;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *startStopButton;
+@property (nonatomic, retain) IBOutlet UIButton *startStopButton;
 @property (nonatomic, retain) MKPolylineView *routeLineView;
 @property (nonatomic, retain) MKPolyline *routeLine;
 @property (nonatomic, retain) CLLocation *previousPoint;

@@ -8,11 +8,22 @@
 
 #import "MSDAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <CoreLocation/CoreLocation.h>
+#import "MSDRoutePoint.h"
 
 @implementation MSDAppDelegate
 
+@synthesize route, manager;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    self.manager = [[CLLocationManager alloc] init];
+    self.manager.delegate = self;
+    self.manager.distanceFilter = kCLDistanceFilterNone;
+    self.manager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.route = [[NSMutableArray alloc] init];
+    
     [FBProfilePictureView class];
     // Override point for customization after application launch.
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
@@ -23,6 +34,15 @@
         NSLog(@"Show Login");
     }
     return YES;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    NSLog(@"updated");
+    CLLocation *endLocation = [locations lastObject];
+    CLLocationCoordinate2D routeCoord = CLLocationCoordinate2DMake(endLocation.coordinate.latitude, endLocation.coordinate.longitude);
+    MSDRoutePoint *point = [[MSDRoutePoint alloc] initWithName:[NSString stringWithFormat:@"Step:%lu", (unsigned long)self.route.count] andCoordinate:routeCoord];
+    [self.route addObject:[point dictionary]];
+    NSLog(@"%@",self.route);
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
