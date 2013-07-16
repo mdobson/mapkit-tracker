@@ -19,10 +19,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JPc-2d-jEB">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ibb-yW-dEq">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -31,13 +27,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="U6S-Ap-jLa" firstAttribute="centerX" secondItem="tNv-6W-SP2" secondAttribute="centerX" type="default" id="0qO-d5-U0Z"/>
-                            <constraint firstItem="JPc-2d-jEB" firstAttribute="leading" secondItem="U6S-Ap-jLa" secondAttribute="leading" type="default" id="4oM-TQ-zks"/>
                             <constraint firstItem="U6S-Ap-jLa" firstAttribute="top" secondItem="tNv-6W-SP2" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Hz0-Cd-aKA"/>
-                            <constraint firstItem="ibb-yW-dEq" firstAttribute="leading" secondItem="JPc-2d-jEB" secondAttribute="leading" type="default" id="On2-z2-PC4"/>
-                            <constraint firstItem="JPc-2d-jEB" firstAttribute="trailing" secondItem="ibb-yW-dEq" secondAttribute="trailing" type="default" id="Owt-OD-gye"/>
-                            <constraint firstItem="JPc-2d-jEB" firstAttribute="trailing" secondItem="U6S-Ap-jLa" secondAttribute="trailing" type="default" id="Pvf-Ls-xWN"/>
-                            <constraint firstItem="JPc-2d-jEB" firstAttribute="top" secondItem="U6S-Ap-jLa" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="kkT-ja-94p"/>
-                            <constraint firstItem="ibb-yW-dEq" firstAttribute="top" secondItem="JPc-2d-jEB" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="nOH-Rn-nCg"/>
+                            <constraint firstItem="ibb-yW-dEq" firstAttribute="leading" secondItem="U6S-Ap-jLa" secondAttribute="leading" type="default" id="XYt-db-51k"/>
+                            <constraint firstItem="ibb-yW-dEq" firstAttribute="top" secondItem="U6S-Ap-jLa" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="nUz-1T-Koy"/>
+                            <constraint firstItem="ibb-yW-dEq" firstAttribute="trailing" secondItem="U6S-Ap-jLa" secondAttribute="trailing" type="default" id="pDu-95-pdV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="BVW-6u-sbF">
@@ -53,7 +46,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="email" destination="JPc-2d-jEB" id="FIe-GR-cBt"/>
                         <outlet property="password" destination="ibb-yW-dEq" id="CJn-OX-6vK"/>
                         <outlet property="username" destination="U6S-Ap-jLa" id="ObY-yu-Esi"/>
                         <segue destination="EHu-xu-O1U" kind="modal" identifier="track" modalTransitionStyle="flipHorizontal" id="BTn-4p-jG6"/>

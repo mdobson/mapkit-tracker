@@ -46,11 +46,10 @@
 
 -(IBAction)signup:(id)sender {
     NSString *username = self.username.text;
-    NSString *email = self.email.text;
     NSString *password = self.password.text;
     
     ApigeeDataClient *client = [MSDSharedApigeeClient sharedClient];
-    ApigeeClientResponse * response = [client addUser:username email:email name:@"nil" password:password];
+    ApigeeClientResponse * response = [client addUser:username email:@"nil" name:@"nil" password:password];
     if (response.transactionState == kApigeeClientResponseSuccess) {
         [self performSegueWithIdentifier:@"track" sender:self];
     } else {
