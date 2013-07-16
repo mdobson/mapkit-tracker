@@ -16,6 +16,7 @@
 @property (nonatomic,retain) IBOutlet MKMapView *mapView;
 @property (nonatomic,retain) MKPolyline *routeLine;
 @property (nonatomic,retain) MKPolylineView *routeLineView;
+@property (nonatomic,retain) IBOutlet UILabel *distanceLabel;
 
 -(IBAction)confirm:(id)sender;
 

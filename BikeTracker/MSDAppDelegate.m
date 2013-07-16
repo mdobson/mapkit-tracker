@@ -39,10 +39,13 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     NSLog(@"updated");
     CLLocation *endLocation = [locations lastObject];
+    if (self.previousPoint) {
+        self.routeDistance += [self.previousPoint distanceFromLocation:endLocation];
+    }
     CLLocationCoordinate2D routeCoord = CLLocationCoordinate2DMake(endLocation.coordinate.latitude, endLocation.coordinate.longitude);
     MSDRoutePoint *point = [[MSDRoutePoint alloc] initWithName:[NSString stringWithFormat:@"Step:%lu", (unsigned long)self.route.count] andCoordinate:routeCoord];
     [self.route addObject:[point dictionary]];
-    NSLog(@"%@",self.route);
+    self.previousPoint = endLocation;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

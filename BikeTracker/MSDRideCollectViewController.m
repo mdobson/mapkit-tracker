@@ -46,6 +46,7 @@
     }
     self.routeLine = [MKPolyline polylineWithPoints:pointsArray count:[self.route count]];
     [self.mapView addOverlay:self.routeLine];
+    self.distanceLabel.text = [NSString stringWithFormat:@"%f Meters.", delegate.routeDistance];
 	// Do any additional setup after loading the view.
 }
 

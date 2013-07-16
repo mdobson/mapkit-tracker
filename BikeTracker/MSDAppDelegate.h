@@ -14,6 +14,8 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSMutableArray *route;
 @property (strong, nonatomic) CLLocationManager *manager;
+@property CLLocationDistance routeDistance;
+@property (strong, nonatomic) CLLocation *previousPoint;
 
 -(void)openSession;
 

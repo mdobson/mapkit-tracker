@@ -88,6 +88,7 @@
     //[self.manager startUpdatingLocation];
     MSDAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     delegate.route = [[NSMutableArray alloc] init];
+    delegate.routeDistance = 0.0;
     [delegate.manager startUpdatingLocation];
     [self.startStopButton setTitle:@"Stop" forState:UIControlStateNormal];
     [self.startStopButton removeTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
