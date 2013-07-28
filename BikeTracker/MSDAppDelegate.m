@@ -39,6 +39,7 @@
 
 - (void)sampleLocation:(CLLocation *)endLocation {
     if (endLocation.horizontalAccuracy < 20) {
+        NSLog(@"Sampling Location!");
         if (self.previousPoint) {
             self.routeDistance += [self.previousPoint distanceFromLocation:endLocation];
         }
@@ -56,9 +57,11 @@
         [self sampleLocation:endLocation];
         self.lastSampleDate = [[NSDate date] timeIntervalSince1970];
     } else {
-        NSTimeInterval sampleInterval = self.lastSampleDate - [[NSDate date] timeIntervalSince1970];
+        NSTimeInterval sampleInterval = [[NSDate date] timeIntervalSince1970] - self.lastSampleDate;
+        NSLog(@"sample interval: %f", sampleInterval);
         if (sampleInterval >= 5) {
             [self sampleLocation:endLocation];
+            self.lastSampleDate = [[NSDate date] timeIntervalSince1970];
         }
     }
 }

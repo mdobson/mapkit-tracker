@@ -70,7 +70,6 @@
 }
 
 -(IBAction)confirm:(id)sender {
-    NSLog(@"%@",self.route);
     NSDictionary *entity = [[NSDictionary alloc] initWithObjectsAndKeys:@"trips", @"type", self.route, @"route", nil];
     ApigeeDataClient * client = [MSDSharedApigeeClient sharedClient];
     [client createEntity:entity

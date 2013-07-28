@@ -40,7 +40,6 @@
 }
 
 -(IBAction) start:(id)sender {
-    NSLog(@"start");
     MSDAppDelegate *delegate = (MSDAppDelegate*)[[UIApplication sharedApplication] delegate];
     delegate.route = [[NSMutableArray alloc] init];
     delegate.routeDistance = 0.0;
@@ -51,7 +50,6 @@
 }
 
 -(IBAction) stop:(id)sender {
-    NSLog(@"stop");
     MSDAppDelegate *delegate = (MSDAppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate.manager stopUpdatingLocation];
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
@@ -81,7 +79,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"confirm"]) {
-        NSLog(@"%@",self.route);
         MSDRideCollectViewController *rideViewController = [segue destinationViewController];
         rideViewController.route = self.route;
     }
