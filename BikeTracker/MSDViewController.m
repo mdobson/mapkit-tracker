@@ -34,59 +34,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.route = [[NSMutableArray alloc] init];
     self.mapView.delegate = self;
     self.mapView.userTrackingMode = YES;
-//    self.manager = [[CLLocationManager alloc] init];
-//    self.manager.delegate = self;
-//    self.manager.distanceFilter = kCLDistanceFilterNone;
-//    self.manager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.startStopButton addTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
-    
-	// Do any additional setup after loading the view, typically from a nib.
 }
-//
-//- (void)viewDidAppear:(BOOL)animated {
-//    NSLog(@"called");
-//    NSArray *annotations = [_mapView.annotations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"!(self isKindOfClass: %@)", [MKUserLocation class]]];
-//    [self.mapView removeAnnotations:annotations];
-//    
-//    MSDAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-//    NSArray *route = delegate.route;
-//    MKMapPoint *pointsArray = malloc(sizeof(CLLocationCoordinate2D)*[route count]);
-//    for (int i = 0; i < [route count]; i++) {
-//        NSDictionary *point = [route objectAtIndex:i];
-//        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[point objectForKey:@"latitude"] doubleValue], [[point objectForKey:@"longitude"] doubleValue]);
-//        pointsArray[i] = MKMapPointForCoordinate(coord);
-//    }
-//    self.routeLine = [MKPolyline polylineWithPoints:pointsArray count:[route count]];
-//    [self.mapView addOverlay:self.routeLine];
-//    
-//    
-//}
-
-//-(void)viewWillAppear:(BOOL)animated {
-//    NSLog(@"called");
-//    NSArray *annotations = [_mapView.annotations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"!(self isKindOfClass: %@)", [MKUserLocation class]]];
-//    [self.mapView removeAnnotations:annotations];
-//    
-//    MSDAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-//    NSArray *route = delegate.route;
-//    MKMapPoint *pointsArray = malloc(sizeof(CLLocationCoordinate2D)*[route count]);
-//    for (int i = 0; i < [route count]; i++) {
-//        NSDictionary *point = [route objectAtIndex:i];
-//        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[point objectForKey:@"latitude"] doubleValue], [[point objectForKey:@"longitude"] doubleValue]);
-//        pointsArray[i] = MKMapPointForCoordinate(coord);
-//    }
-//    self.routeLine = [MKPolyline polylineWithPoints:pointsArray count:[route count]];
-//    [self.mapView addOverlay:self.routeLine];
-//    
-//}
 
 -(IBAction) start:(id)sender {
     NSLog(@"start");
-    //[self.manager startUpdatingLocation];
-    MSDAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    MSDAppDelegate *delegate = (MSDAppDelegate*)[[UIApplication sharedApplication] delegate];
     delegate.route = [[NSMutableArray alloc] init];
     delegate.routeDistance = 0.0;
     [delegate.manager startUpdatingLocation];
@@ -97,8 +52,7 @@
 
 -(IBAction) stop:(id)sender {
     NSLog(@"stop");
-    //[self.manager stopUpdatingLocation];
-    MSDAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    MSDAppDelegate *delegate = (MSDAppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate.manager stopUpdatingLocation];
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
     [self.startStopButton removeTarget:self action:@selector(stop:) forControlEvents:UIControlEventTouchUpInside];

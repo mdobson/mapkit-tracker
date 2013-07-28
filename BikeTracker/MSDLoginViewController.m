@@ -34,14 +34,16 @@
     NSString *password = self.password.text;
     
     ApigeeDataClient *client = [MSDSharedApigeeClient sharedClient];
-    ApigeeClientResponse * response = [client logInUser:username password:password];
-    if (response.transactionState == kApigeeClientResponseSuccess) {
-        [self performSegueWithIdentifier:@"track" sender:self];
-    } else {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error logging you in. Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-    }
-    
+    [client logInUser:username
+             password:password
+    completionHandler:^(ApigeeClientResponse *response){
+      if (response.transactionState == kApigeeClientResponseSuccess) {
+          [self performSegueWithIdentifier:@"track" sender:self];
+      } else {
+          UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error logging you in. Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+          [alert show];
+      }
+    }];
 }
 
 -(IBAction)signup:(id)sender {
@@ -49,13 +51,19 @@
     NSString *password = self.password.text;
     
     ApigeeDataClient *client = [MSDSharedApigeeClient sharedClient];
-    ApigeeClientResponse * response = [client addUser:username email:@"nil" name:@"nil" password:password];
+    
+    [client addUser:username
+              email:username
+               name:@"nil"
+           password:password
+  completionHandler:^(ApigeeClientResponse *response){
     if (response.transactionState == kApigeeClientResponseSuccess) {
         [self performSegueWithIdentifier:@"track" sender:self];
     } else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error signing you up. Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
+  }];
     
 }
 

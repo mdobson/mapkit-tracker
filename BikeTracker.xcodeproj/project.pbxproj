@@ -10,9 +10,9 @@
 		63372BFA17899ABD00B5C5D8 /* MSDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63372BF917899ABD00B5C5D8 /* MSDLoginViewController.m */; };
 		63539EE5178B967800844AE5 /* MSDSharedApigeeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 63539EE4178B967800844AE5 /* MSDSharedApigeeClient.m */; };
 		63539EE8178BA16C00844AE5 /* MSDRideCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63539EE7178BA16C00844AE5 /* MSDRideCollectViewController.m */; };
+		636C638717A4AC9B00768555 /* ApigeeiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636C638617A4AC9B00768555 /* ApigeeiOSSDK.framework */; };
 		639C9364178B294E00B7B6C7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639C9363178B294E00B7B6C7 /* SystemConfiguration.framework */; };
 		639C9366178B295700B7B6C7 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639C9365178B295700B7B6C7 /* CoreTelephony.framework */; };
-		63BD54071789B3E400E7A400 /* ApigeeiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63BD54061789B3E400E7A400 /* ApigeeiOSSDK.framework */; };
 		63D3CFA717899C4D007A68CE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D3CFA617899C4D007A68CE /* FacebookSDK.framework */; };
 		63D3CFA917899C85007A68CE /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63D3CFA817899C85007A68CE /* FacebookSDKResources.bundle */; };
 		63D3CFAF17899CF3007A68CE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D3CFAA17899CF3007A68CE /* Accounts.framework */; };
@@ -58,9 +58,9 @@
 		63539EE4178B967800844AE5 /* MSDSharedApigeeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDSharedApigeeClient.m; sourceTree = "<group>"; };
 		63539EE6178BA16C00844AE5 /* MSDRideCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDRideCollectViewController.h; sourceTree = "<group>"; };
 		63539EE7178BA16C00844AE5 /* MSDRideCollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDRideCollectViewController.m; sourceTree = "<group>"; };
+		636C638617A4AC9B00768555 /* ApigeeiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApigeeiOSSDK.framework; path = "../../sdks/apigee-ios-sdk/build/framework/ApigeeiOSSDK.framework"; sourceTree = "<group>"; };
 		639C9363178B294E00B7B6C7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		639C9365178B295700B7B6C7 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		63BD54061789B3E400E7A400 /* ApigeeiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApigeeiOSSDK.framework; path = "../../apigee-ios-sdk/build/framework/ApigeeiOSSDK.framework"; sourceTree = "<group>"; };
 		63D3CFA617899C4D007A68CE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		63D3CFA817899C85007A68CE /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		63D3CFAA17899CF3007A68CE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -101,9 +101,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				636C638717A4AC9B00768555 /* ApigeeiOSSDK.framework in Frameworks */,
 				639C9366178B295700B7B6C7 /* CoreTelephony.framework in Frameworks */,
 				639C9364178B294E00B7B6C7 /* SystemConfiguration.framework in Frameworks */,
-				63BD54071789B3E400E7A400 /* ApigeeiOSSDK.framework in Frameworks */,
 				63D3CFAF17899CF3007A68CE /* Accounts.framework in Frameworks */,
 				63D3CFB017899CF3007A68CE /* AdSupport.framework in Frameworks */,
 				63D3CFB117899CF3007A68CE /* libsqlite3.dylib in Frameworks */,
@@ -134,9 +134,9 @@
 		63F9A28D1788720E00774925 = {
 			isa = PBXGroup;
 			children = (
+				636C638617A4AC9B00768555 /* ApigeeiOSSDK.framework */,
 				639C9365178B295700B7B6C7 /* CoreTelephony.framework */,
 				639C9363178B294E00B7B6C7 /* SystemConfiguration.framework */,
-				63BD54061789B3E400E7A400 /* ApigeeiOSSDK.framework */,
 				63D3CFAA17899CF3007A68CE /* Accounts.framework */,
 				63D3CFAB17899CF3007A68CE /* AdSupport.framework */,
 				63D3CFAC17899CF3007A68CE /* libsqlite3.dylib */,
@@ -454,12 +454,13 @@
 		63F9A2CF1788720E00774925 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Dobson (LFT8494QFW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matthew Dobson (LFT8494QFW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Dobson (B7N3YYCVAV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Dobson (B7N3YYCVAV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Documents/FacebookSDK\"",
 					"\"$(SRCROOT)/../../apigee-ios-sdk/build/framework\"",
+					"\"$(SRCROOT)/../../sdks/apigee-ios-sdk/build/framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BikeTracker/BikeTracker-Prefix.pch";
@@ -469,8 +470,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3DA9A430-04D5-4650-9F48-D4C067FA549A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3DA9A430-04D5-4650-9F48-D4C067FA549A";
+				PROVISIONING_PROFILE = "064A1DEC-5E48-4D2B-9FEA-BB3875C94667";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "064A1DEC-5E48-4D2B-9FEA-BB3875C94667";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -478,12 +479,13 @@
 		63F9A2D01788720E00774925 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Dobson (LFT8494QFW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matthew Dobson (LFT8494QFW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Dobson (B7N3YYCVAV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Dobson (B7N3YYCVAV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Documents/FacebookSDK\"",
 					"\"$(SRCROOT)/../../apigee-ios-sdk/build/framework\"",
+					"\"$(SRCROOT)/../../sdks/apigee-ios-sdk/build/framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BikeTracker/BikeTracker-Prefix.pch";
@@ -493,8 +495,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3DA9A430-04D5-4650-9F48-D4C067FA549A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3DA9A430-04D5-4650-9F48-D4C067FA549A";
+				PROVISIONING_PROFILE = "064A1DEC-5E48-4D2B-9FEA-BB3875C94667";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "064A1DEC-5E48-4D2B-9FEA-BB3875C94667";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

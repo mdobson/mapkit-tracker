@@ -73,23 +73,30 @@
     NSLog(@"%@",self.route);
     NSDictionary *entity = [[NSDictionary alloc] initWithObjectsAndKeys:@"trips", @"type", self.route, @"route", nil];
     ApigeeDataClient * client = [MSDSharedApigeeClient sharedClient];
-    ApigeeClientResponse *response = [client createEntity:entity];
-    if (response.transactionState == kApigeeClientResponseSuccess) {
-        NSDictionary * entity = [[[response response] objectForKey:@"entities"] objectAtIndex:0];
-        NSString *uuid = [entity objectForKey:@"uuid"];
-        ApigeeClientResponse *connectionResponse = [client connectEntities:@"users" connectorID:@"me" type:@"rode" connecteeID:uuid];
-        if (connectionResponse.transactionState == kApigeeClientResponseSuccess) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"success" message:@"Good!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
+    [client createEntity:entity
+       completionHandler:^(ApigeeClientResponse *response){
+        if (response.transactionState == kApigeeClientResponseSuccess) {
+            NSDictionary * entity = [[[response response] objectForKey:@"entities"] objectAtIndex:0];
+            NSString *uuid = [entity objectForKey:@"uuid"];
+            [client connectEntities:@"users"
+                        connectorID:@"me"
+                               type:@"rode"
+                        connecteeID:uuid
+                  completionHandler:^(ApigeeClientResponse *response){
+                      if (response.transactionState == kApigeeClientResponseSuccess) {
+                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"success" message:@"Good!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                          [alert show];
+                      } else {
+                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"failure on connection" message:@"bad!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                          [alert show];
+                      }
+                  }];
+            
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"failure on connection" message:@"bad!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"failure on create" message:@"bad!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
         }
-        
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"failure on create" message:@"bad!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-    }
+    }];
 }
 
 @end
