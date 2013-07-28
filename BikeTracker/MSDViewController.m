@@ -60,33 +60,6 @@
     [self performSegueWithIdentifier:@"confirm" sender:self];
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation *endLocation = [locations lastObject];
-    CLLocation *startLocation = nil;
-    CLLocationCoordinate2D routeCoord = CLLocationCoordinate2DMake(endLocation.coordinate.latitude, endLocation.coordinate.longitude);
-    MSDRoutePoint *point = [[MSDRoutePoint alloc] initWithName:[NSString stringWithFormat:@"Step:%lu", (unsigned long)self.route.count] andCoordinate:routeCoord];;
-    [self.route addObject:[point dictionary]];
-    if (self.previousPoint) {
-        startLocation = self.previousPoint;
-        MKMapPoint *pointsArray = malloc(sizeof(CLLocationCoordinate2D)*2);
-        pointsArray[0] = MKMapPointForCoordinate(startLocation.coordinate);
-        pointsArray[1] = MKMapPointForCoordinate(endLocation.coordinate);
-        self.routeLine = [MKPolyline polylineWithPoints:pointsArray count:2];
-    } else {
-        MKMapPoint *pointsArray = malloc(sizeof(CLLocationCoordinate2D));
-        pointsArray[0] = MKMapPointForCoordinate(endLocation.coordinate);
-        self.routeLine = [MKPolyline polylineWithPoints:pointsArray count:1];
-    }
-    
-    self.previousPoint = endLocation;
-
-    [self.mapView addOverlay:self.routeLine];
-    
-    //NSLog(@"Route:%@", self.route);
-    
-    
-}
-
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
     MKOverlayView* overlayView = nil;

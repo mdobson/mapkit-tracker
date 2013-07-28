@@ -16,6 +16,7 @@
 @property (strong, nonatomic) CLLocationManager *manager;
 @property CLLocationDistance routeDistance;
 @property (strong, nonatomic) CLLocation *previousPoint;
+@property (nonatomic) NSTimeInterval lastSampleDate;
 
 -(void)openSession;
 

@@ -13,7 +13,7 @@
 
 @implementation MSDAppDelegate
 
-@synthesize route, manager;
+@synthesize route, manager, lastSampleDate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -37,16 +37,30 @@
     return YES;
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    NSLog(@"updated");
-    CLLocation *endLocation = [locations lastObject];
-    if (self.previousPoint) {
-        self.routeDistance += [self.previousPoint distanceFromLocation:endLocation];
+- (void)sampleLocation:(CLLocation *)endLocation {
+    if (endLocation.horizontalAccuracy < 20) {
+        if (self.previousPoint) {
+            self.routeDistance += [self.previousPoint distanceFromLocation:endLocation];
+        }
+        CLLocationCoordinate2D routeCoord = CLLocationCoordinate2DMake(endLocation.coordinate.latitude, endLocation.coordinate.longitude);
+        MSDRoutePoint *point = [[MSDRoutePoint alloc] initWithName:[NSString stringWithFormat:@"Step:%lu", (unsigned long)self.route.count] andCoordinate:routeCoord];
+        [self.route addObject:[point dictionary]];
+        self.previousPoint = endLocation;
     }
-    CLLocationCoordinate2D routeCoord = CLLocationCoordinate2DMake(endLocation.coordinate.latitude, endLocation.coordinate.longitude);
-    MSDRoutePoint *point = [[MSDRoutePoint alloc] initWithName:[NSString stringWithFormat:@"Step:%lu", (unsigned long)self.route.count] andCoordinate:routeCoord];
-    [self.route addObject:[point dictionary]];
-    self.previousPoint = endLocation;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+
+    CLLocation *endLocation = [locations lastObject];
+    if (!self.lastSampleDate) {
+        [self sampleLocation:endLocation];
+        self.lastSampleDate = [[NSDate date] timeIntervalSince1970];
+    } else {
+        NSTimeInterval sampleInterval = self.lastSampleDate - [[NSDate date] timeIntervalSince1970];
+        if (sampleInterval >= 5) {
+            [self sampleLocation:endLocation];
+        }
+    }
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
